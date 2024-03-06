@@ -56,7 +56,7 @@ export default class LocalRestApi extends Plugin {
       const attrs = [
         {
           name: "commonName",
-          value: "Obsidian Local REST API",
+          value: "Obsidian Local REST",
         },
       ];
       const certificate = forge.pki.createCertificate();
@@ -172,8 +172,7 @@ export default class LocalRestApi extends Plugin {
     );
 
     console.log(
-      `[REST API] Listening on https://${
-        this.settings.bindingHost ?? DefaultBindingHost
+      `[REST API] Listening on https://${this.settings.bindingHost ?? DefaultBindingHost
       }:${this.settings.port}/`
     );
 
@@ -189,8 +188,7 @@ export default class LocalRestApi extends Plugin {
       );
 
       console.log(
-        `[REST API] Listening on http://${
-          this.settings.bindingHost ?? DefaultBindingHost
+        `[REST API] Listening on http://${this.settings.bindingHost ?? DefaultBindingHost
         }:${this.settings.insecurePort}/`
       );
     }
@@ -247,9 +245,8 @@ class LocalRestApiSettingTab extends PluginSettingTab {
     apiKeyDiv.createEl("pre", { text: this.plugin.settings.apiKey });
     apiKeyDiv.createEl("p", { text: "Example header: " });
     apiKeyDiv.createEl("pre", {
-      text: `${
-        this.plugin.settings.authorizationHeaderName ?? "Authorization"
-      }: Bearer ${this.plugin.settings.apiKey}`,
+      text: `${this.plugin.settings.authorizationHeaderName ?? "Authorization"
+        }: Bearer ${this.plugin.settings.apiKey}`,
     });
 
     const seeMore = apiKeyDiv.createEl("p");
@@ -284,10 +281,9 @@ class LocalRestApiSettingTab extends PluginSettingTab {
       soonExpiringCertDiv.classList.add("certificate-expiring-soon");
       soonExpiringCertDiv.innerHTML = `
         <b>Your certificate will expire in ${Math.floor(
-          remainingCertificateValidityDays
-        )} day${
-        Math.floor(remainingCertificateValidityDays) === 1 ? "" : "s"
-      }s!</b>
+        remainingCertificateValidityDays
+      )} day${Math.floor(remainingCertificateValidityDays) === 1 ? "" : "s"
+        }s!</b>
         You should re-generate your certificate below by pressing
         the "Re-generate Certificates" button below in
         order to continue to connect securely to this API.
@@ -517,7 +513,7 @@ class LocalRestApiSettingTab extends PluginSettingTab {
           this.plugin.refreshServerState();
         }).setValue(
           this.plugin.settings.authorizationHeaderName ??
-            DefaultBearerTokenHeaderName
+          DefaultBearerTokenHeaderName
         );
       });
       new Setting(containerEl).setName("Binding Host").addText((cb) => {
